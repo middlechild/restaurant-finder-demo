@@ -1,0 +1,345 @@
+@import 'variables';
+@import 'typography';
+@import 'mixins';
+
+// ******************* //
+// *** Base styles *** //
+// ******************* //
+
+body {
+  background: #fff url($background-image-path) repeat right top;
+  height: 100%;
+
+  main {
+    font-family: $sans-serif-font;
+    font-size: $font-size-default;
+    position: relative;
+  }
+
+  p {
+    font-size: $font-size-default;
+  }
+
+  ul {
+    li {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .small {
+    font-size: $font-size-small;
+  }
+
+  .hidden {
+    display: none;
+  }
+}
+
+// ******************* //
+// *** Page styles *** //
+// ******************* //
+
+.search-container {
+  background-color: #fff;
+  height: 100%;
+  margin: 0 auto;
+  max-width: 820px;
+  position: relative;
+  @include box-shadow(0.3);
+
+  .search-bar {
+    background-color: $brand-color;
+    height: 84px;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 22px;
+
+    input {
+      padding: 20px;
+    }
+  }
+
+  section.results {
+    margin-left: 0;
+    margin-right: 0;
+
+    .search-facets {
+      padding: 10px 20px;
+
+      a {
+        color: $font-color-primary;
+        display: table;
+        text-decoration: none;
+        width: 100%;
+
+        span {
+          float: right;
+          color: $font-color-secondary;
+          margin-left: 4px;
+        }
+
+        &:hover,
+        &:focus {
+          color: white;
+          text-decoration: none;
+        }
+      }
+
+      ul {
+        font-size: $font-size-medium;
+        padding: 0 0 10px 0;
+
+        li {
+          list-style-type:none;
+          margin: 1px 0;
+          padding: 0 10px;
+
+          input {
+            margin-right: 6px;
+          }
+
+          &:hover,
+          &:focus,
+          &.refined {
+            background: $pill-color;
+            border-radius: 4px;
+            color: white;
+
+            a, span {
+              color: white;
+            }
+          }
+
+          &.refined {
+            background: $brand-color;
+          }
+        }
+      }
+
+      .facet-name {
+        font-weight: normal;
+        margin-bottom: 10px;
+      }
+
+      .star-rating {
+        margin-left: 10px;
+
+        li {
+          margin: 5px 0;
+
+          &:hover,
+          &:focus,
+          &.refined {
+            @include star-group($star-back-image-path, 100%, 0%);
+          }
+
+        }
+      }
+    }
+
+    .search-results {
+      border-left: 1px solid #dedede;
+      min-height: 520px;
+      padding: 30px 20px 20px 40px;
+
+      // Highlighting color
+      em {
+        background-color: lighten($pill-color, 40%);
+        font-style: normal;
+      }
+
+      .processing-info {
+        background-color: #fff;
+        float: left;
+        padding-right: 20px;
+      }
+
+      .divider {
+        border-bottom: 1px solid #dedede;
+        height: 18px;
+        margin-bottom: 30px;
+        width: 100%;
+      }
+
+      .result-item {
+        color: $font-color-secondary;
+        margin-bottom: 24px;
+
+        .result-image {
+          border: 1px solid #dedede;
+          border-radius: 4px;
+          float: left;
+          height: 80px;
+          overflow: hidden;
+          position: relative;
+          width: 80px;
+
+          img {
+            width: 100%;
+          }
+        }
+
+        .result-data {
+          display: inline-block;
+          margin: 0;
+          max-width: 80%;
+          padding-left: 20px;
+
+          li {
+            line-height: 1.8em;
+          }
+
+          .item-name {
+            color: $font-color-primary;
+            font-size: $font-size-large;
+          }
+
+          .score {
+            color: #FFAB66;
+          }
+
+          .stars {
+            display: inline-block;
+            margin: -2px 6px;
+          }
+
+          @media (max-width: 767px) and (orientation: portrait) {
+            float: left;
+            margin-bottom: 20px;
+            padding-left: 0;
+            width: 100%;
+          }
+
+          @media (max-width: 767px) and (orientation: landscape) {
+            float: left;
+            margin-bottom: 20px;
+            padding-left: 20px;
+            width: 100%;
+          }
+        }
+      }
+
+      .btn-default {
+        color: $font-color-secondary;
+        display: table;
+        margin: 20px auto;
+        min-width: 184px;
+        padding: 8px 12px;
+      }
+    }
+
+    .stars {
+      position: relative;
+      @include star-group($star-back-image-path, 100%, 0%);
+
+      span {
+        left: 0;
+        top: 0;
+        position: absolute;
+        @include star-group($star-back-image-path, 0%, 100%);
+
+        // Setup base background position
+        &[class^="star-1"] { background-position: -50px 100%; };
+        &[class^="star-2"] { background-position: -33px 100%; };
+        &[class^="star-3"] { background-position: -17px 100%; };
+        &[class^="star-4"] { background-position:  100% 100%; };
+
+        // Override background position for whole number ratings
+        &.star-10 { background-position: -66px 100%; };
+        &.star-20 { background-position: -50px 100%; };
+        &.star-30 { background-position: -33px 100%; };
+        &.star-40 { background-position: -17px 100%; };
+        &.star-50 { background-position:  100% 100%; };
+
+        // Change image based on decimal number
+        &.star-11, &.star-12, &.star-13,
+        &.star-21, &.star-22, &.star-23,
+        &.star-31, &.star-32, &.star-33,
+        &.star-41, &.star-42, &.star-43,
+        &.star-51, &.star-52, &.star-53 {
+          background-image: url($star-partial-25-image-path);
+        };
+
+        &.star-14, &.star-15, &.star-16,
+        &.star-24, &.star-25, &.star-26,
+        &.star-34, &.star-35, &.star-36,
+        &.star-44, &.star-45, &.star-46,
+        &.star-54, &.star-55, &.star-56 {
+          background-image: url($star-partial-50-image-path);
+        };
+
+        &.star-17, &.star-18, &.star-19,
+        &.star-27, &.star-28, &.star-29,
+        &.star-37, &.star-38, &.star-39,
+        &.star-47, &.star-48, &.star-49,
+        &.star-57, &.star-58, &.star-59 {
+          background-image: url($star-partial-75-image-path);
+        };
+      }
+    }
+  }
+}
+
+
+
+
+// *** Responsive *** //
+
+/* Extra small devices (phones, less than 768px) */
+@media (max-width: 767px) {
+  .search-container {
+
+    .search-bar {
+      padding: 22px 30px;
+    }
+
+    section.results {
+
+      .search-facets {
+        padding: 10px 30px;
+      }
+
+      .search-results {
+        padding: 30px;
+
+        .result-item {
+
+          .result-data {
+            margin-top: 5px;
+            max-width: 100%;
+          }
+        }
+
+        .btn-default {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .search-container {
+    margin: 50px auto;
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+}
+
+/* 2X assets for retina displays */
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  body {
+    background: #fff url($background-image-path-2X) repeat right top;
+  }
+}

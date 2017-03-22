@@ -1,0 +1,14 @@
+@mixin box-shadow($opacity) {
+  -moz-box-shadow: rgba(0, 0, 0, $opacity) 0 0 15px;
+  -webkit-box-shadow: rgba(0, 0, 0, $opacity) 0 0 15px;
+  box-shadow: rgba(0, 0, 0, $opacity) 0 0 15px;
+}
+
+@mixin star-group($path, $vertical, $horizontal) {
+  background-image: url($path);
+  background-position: $vertical $horizontal;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 15px;
+  width: 80px;
+}
