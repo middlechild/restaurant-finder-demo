@@ -1,0 +1,87 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cool places to eat!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/main.min.css">
+
+  </head>
+  <body>
+
+  <main>
+
+    <div class="search-container">
+
+      <div class="row search-bar">
+        <input id="search-input" type="text" class="form-control" autocomplete="off" placeholder="Search for Restaurants by Name, Cuisine, Location">
+      </div>
+
+      <section class="row results">
+
+        <div id="facets-list" class="col-md-3 col-sm-4 col-xs-12 search-facets">
+        </div>
+
+        <div class="col-md-9 col-sm-8 col-xs-12 search-results">
+
+          <div class="processing-info"><span id="total-records">0 results found </span><span id="processing-time" class="small">in 0 seconds</span></div>
+          <div class="divider"></div>
+
+          <div id="results-list"></div>
+
+          <a id="load-more-btn" class="btn btn-default hidden" href="#" role="button">Show more</a>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Templates -->
+  <script id="result-item-template" type="text/template">
+    <div class="result-item">
+      <div class="result-image">
+        <img src="{{ image }}" alt="{{ name }}">
+      </div>
+      <ul class="result-data">
+        <li class="item-name">{{ name }}</li>
+        <li>
+          <span class="score">{{ rating }} </span>
+          <i class="stars"><span class="star-{{ star }}"></span>
+          </i> ({{ reviews }} reviews)
+        </li>
+        <li>{{ type }} | {{ neighborhood }} | {{ price }}</li>
+      </ul>
+    </div>
+
+  </script>
+
+  <script id="temp-rating-template" type="text/template">
+    <h4 class="facet-name">Rating</h4>
+    <ul class="star-rating">
+      <li class="stars"></li>
+      <li class="stars"><span class="star-10"></span></li>
+      <li class="stars"><span class="star-20"></span></li>
+      <li class="stars"><span class="star-30"></span></li>
+      <li class="stars"><span class="star-40"></span></li>
+      <li class="stars"><span class="star-50"></span></li>
+    </ul>
+  </script>
+
+  <script id="facet-item-template" type="text/template">
+    <li class="{{ class }}">
+      <a data-attribute="{{ attribute }}" data-value="{{ value }}" href="#">{{ value }}<span>{{ count }}</span></a>
+    </li>
+  </script>
+  <!-- Templates -->
+
+  <!-- JS -->
+  <script src="assets/js/main.min.js"></script>
+
+  </body>
+</html>
